@@ -38,8 +38,12 @@ public class Player : MonoBehaviour {
         Animator animatorComponent = GetComponent<Animator>();
         // Set the speed on animator
         animatorComponent.SetFloat("speed", animatorSpeed);
+        // Get the sprite component from object
+        SpriteRenderer spriteComponent = GetComponent<SpriteRenderer>();
+        // Set flip based on x velocity
+        spriteComponent.flipX = velocity.x < 0;
 		// Set the y (up/dowm) component of the velocity based on jump
-		if (jump == true && touchingGround == true) {
+        if (jump == true && touchingGround == true) {
 			velocity.y = jumpSpeed;
 		}
 		// Set our rigidbody's velocity based on our local copy
