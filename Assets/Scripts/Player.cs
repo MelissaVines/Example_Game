@@ -32,6 +32,12 @@ public class Player : MonoBehaviour {
 		Vector2 velocity = rigidBody.velocity;
 		// Set the x (left/right) component of the velocity based on our input
 		velocity.x = horizontal * speed;
+        // Determine the speed for the animator
+        float animatorSpeed = Mathf.Abs(velocity.x);
+        // Get the animator compentent from game object
+        Animator animatorComponent = GetComponent<Animator>();
+        // Set the speed on animator
+        animatorComponent.SetFloat("speed", animatorSpeed);
 		// Set the y (up/dowm) component of the velocity based on jump
 		if (jump == true && touchingGround == true) {
 			velocity.y = jumpSpeed;
@@ -39,12 +45,12 @@ public class Player : MonoBehaviour {
 		// Set our rigidbody's velocity based on our local copy
 		rigidBody.velocity = velocity;
 		// Print a log when the mouse button is pressed
-		if (Input.GetMouseButton (0)) {
-			Debug.Log ("Mouse button down");
-		}
+		//if (Input.GetMouseButton (0)) {
+		//	Debug.Log ("Mouse button down");
+		//}
 		// Print a log of the mouse position
-		Vector2 mousePosition = Input.mousePosition;
-		Debug.Log ("Mouse position is " + mousePosition);
+		//Vector2 mousePosition = Input.mousePosition;
+		//Debug.Log ("Mouse position is " + mousePosition);
 	}
 
 	public void ApplyDamage (float damageDealt) {
